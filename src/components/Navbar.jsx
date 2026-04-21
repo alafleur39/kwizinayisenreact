@@ -32,5 +32,5 @@ function Navbar() { // this is the navbar component that will be used to navigat
 // 1. We are using the useState hook to manage the state of the menu (open or closed).
 // 2. We have a hamburger menu that toggles the state of the menu when clicked.
 // 3. The navigation links are conditionally rendered based on the state of the menu (active class is added when menu is open).
-// 4. The logo is displayed on the left side of the navbar, and the navigation links are displayed on the right side.
+// 4. The logo is displayed on the left side of the navbar, and the navigation links are displayed on the right side
 export default Navbar;
