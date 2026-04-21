@@ -109,7 +109,7 @@ a {
   background: rgba(0, 0, 0, 0.45);
 }
 
-.hero-content {
+.hero-content { /* This class is added to the content inside the hero section to ensure it appears above the overlay. */
   position: relative;
   z-index: 1;
   color: white;
@@ -118,7 +118,7 @@ a {
   transform: translateY(-70px);
 }
 
-.hero-logo {
+.hero-logo { /* This class is added to the logo image in the hero section to style it appropriately. */
   width: clamp(300px, 60vw, 700px);
   margin: 0 auto 6px;
   filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.55));
@@ -154,6 +154,100 @@ a {
   background-color: #b60f2d;
   transform: translateY(-2px);
 }
+
+/* ABOUT */
+.about {
+  background: var(--white);
+  padding: 80px 20px;
+}
+
+.about-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  max-width: 1100px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.about-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.about-text h1 {
+  margin-bottom: 16px;
+  font-size: clamp(2rem, 3vw, 2.6rem);
+}
+
+.about-text p {
+  margin-bottom: 18px;
+  line-height: 1.7;
+  color: #333;
+}
+
+.about-image {
+  flex: 1;
+  min-width: 300px;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* FOOTER */
+.footer {
+  background-color: #001660;
+  color: white;
+  padding: 48px 20px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: auto;
+  gap: 24px;
+}
+
+.footer-section h3,
+.footer-section h4 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.footer p {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.footer a:hover {
+  color: var(--red);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #e6e6e6;
+} /* footer-botom is the copyright notice at the bottom of the footer, it adds a professional touch and indicates that the content is protected. */
+/* the following above is for the about footer and hero sections, this is neccessary for styling */
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
