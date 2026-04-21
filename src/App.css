@@ -249,7 +249,7 @@ a {
 } /* footer-botom is the copyright notice at the bottom of the footer, it adds a professional touch and indicates that the content is protected. */
 /* the following above is for the about footer and hero sections, this is neccessary for styling */
 
-/* RESPONSIVE */
+/* RESPONSIVE  MOBILE */
 @media (max-width: 768px) {
   .hamburger {
     display: block;
@@ -282,8 +282,59 @@ a {
     pointer-events: auto;
   }
 
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    padding: 100px 20px 80px;
+  }
+
+  .hero-content {
+    transform: translateY(0);
+    max-width: 100%;
+  }
+
+  .hero-logo {
+    width: clamp(220px, 70vw, 360px);
+    margin-bottom: -20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+
   .hero-subtitle {
     font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 28px;
+  }
+
+  .about-text,
+  .about-image {
+    min-width: 100%;
+  }
+
+  .gallery {
+    padding: 60px 16px;
+  }
+
+  .slide {
+    height: 320px;
+  }
+
+  .prev,
+  .next {
+    font-size: 20px;
+    padding: 8px 12px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
   }
 }
 
@@ -292,8 +343,127 @@ a {
     padding: 12px 18px;
   }
 
+  .logo {
+    gap: 8px;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
   .logo span {
     font-size: 0.95rem;
   }
-} /* Add more styles for other sections as needed */
+
+  .nav-links {
+    width: 190px;
+    right: 10px;
+    top: 58px;
+    padding: 14px;
+  }
+
+  .hero {
+    padding: 90px 16px 70px;
+  }
+
+  .hero-logo {
+    width: 220px;
+    margin-bottom: -10px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    padding: 10px 22px;
+    font-size: 0.95rem;
+  }
+
+  .about {
+    padding: 60px 16px;
+  }
+
+  .about-text h1,
+  .gallery h1 {
+    font-size: 1.8rem;
+  }
+
+  .slide {
+    height: 240px;
+  }
+
+  .footer {
+    padding: 36px 16px;
+  }
+}
+ /* Add more styles for other sections as needed */
 /* above is the CSS for the Navbar and Hero sections, you can add more styles for other sections as needed */
+
+/* GALLERY */
+.gallery {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.gallery h1 {
+  margin-bottom: 10px;
+}
+
+.gallery p {
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.7;
+  color: #333;
+}
+
+.slider {
+  position: relative;
+  max-width: 1000px;
+  margin: 40px auto 0;
+}
+
+.slides {
+  position: relative;
+}
+
+.slide {
+  width: 100%;
+  display: block;
+  border-radius: 14px;
+  height: 520px;
+  object-fit: cover;
+  box-shadow: var(--shadow);
+}
+
+.prev,
+.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  font-size: 24px;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.prev {
+  left: 14px;
+}
+
+.next {
+  right: 14px;
+}
+
+.prev:hover,
+.next:hover {
+  background-color: var(--red);
+}
