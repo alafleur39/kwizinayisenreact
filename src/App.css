@@ -249,9 +249,8 @@ a {
 } /* footer-botom is the copyright notice at the bottom of the footer, it adds a professional touch and indicates that the content is protected. */
 /* the following above is for the about footer and hero sections, this is neccessary for styling */
 
-/* RESPONSIVE  MOBILE */
-@media (max-width: 768px) {
-  .hamburger {
+@media (max-width: 768px) { /*TABLETS AND SMALLER SCREENS*/
+  .hamburger { /* we create a hamburger menu for smaller screens*/
     display: block;
     color: white;
   }
@@ -336,33 +335,34 @@ a {
     flex-direction: column;
     text-align: center;
   }
+
   .menu-container {
-  grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
+  }
+
+  .cart-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cart-item button {
+    margin-top: 12px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reservation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: span 1;
+  }
 }
 
-.cart-item {
-  align-items: flex-start;
-  flex-direction: column;
-}
-
-.cart-item button {
-  margin-top: 12px;
-}
-.menu-container {
-  grid-template-columns: 1fr;
-}
-
-.cart-item {
-  align-items: flex-start;
-  flex-direction: column;
-}
-
-.cart-item button { 
-  margin-top: 12px;
-}
-} /* The above media query targets screens with a maximum width of 768px, which typically includes tablets and smaller devices. It adjusts the layout and styling of the navbar, hero section, about section, gallery, and footer to ensure a better user experience on smaller screens. For example, the hamburger menu is displayed for navigation, the hero section's height and padding are adjusted, and the about section's layout changes to a column format for better readability. Additionally, the gallery images and navigation buttons are resized for better visibility on smaller screens. The footer also adapts to a more vertical layout for easier access to information. */
-
-@media (max-width: 520px) {
+@media (max-width: 520px) { /*PHONES AND SMALLER SCREENS*/
   .navbar {
     padding: 12px 18px;
   }
@@ -645,4 +645,117 @@ a {
   padding: 2px 8px;
   font-size: 0.85rem;
   font-weight: 600;
+}
+
+/* CONTACT */
+.contact { /* we set the padding to 80px on the top and bottom, and 20px on the left and right for the contact section */
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-top: 40px;
+}
+
+.form-card {
+  background: var(--white);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.contact-form h2,
+.reservation-form h2 {
+  font-size: 1.2rem;
+  color: var(--blue);
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-family: inherit;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(0, 32, 159, 0.15);
+}
+
+.contact-form button,
+.reservation-form button {
+  padding: 12px;
+  background-color: var(--red);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  margin-top: 10px;
+}
+
+.contact-form button:hover,
+.reservation-form button:hover {
+  background-color: #b60f2d;
+  transform: translateY(-2px);
+}
+
+.map-container {
+  width: 100%;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 450px;
+  border-radius: 10px;
+}
+
+.reservation-section {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.reservation-form {
+  width: 100%;
+  max-width: 860px;
+}
+
+.reservation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.full-width {
+  grid-column: span 2;
 }
