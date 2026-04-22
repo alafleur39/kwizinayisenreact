@@ -336,7 +336,31 @@ a {
     flex-direction: column;
     text-align: center;
   }
+  .menu-container {
+  grid-template-columns: 1fr;
 }
+
+.cart-item {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.cart-item button {
+  margin-top: 12px;
+}
+.menu-container {
+  grid-template-columns: 1fr;
+}
+
+.cart-item {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.cart-item button { 
+  margin-top: 12px;
+}
+} /* The above media query targets screens with a maximum width of 768px, which typically includes tablets and smaller devices. It adjusts the layout and styling of the navbar, hero section, about section, gallery, and footer to ensure a better user experience on smaller screens. For example, the hamburger menu is displayed for navigation, the hero section's height and padding are adjusted, and the about section's layout changes to a column format for better readability. Additionally, the gallery images and navigation buttons are resized for better visibility on smaller screens. The footer also adapts to a more vertical layout for easier access to information. */
 
 @media (max-width: 520px) {
   .navbar {
@@ -466,4 +490,159 @@ a {
 .prev:hover,
 .next:hover {
   background-color: var(--red);
+}
+/* MENU */
+.menu {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.menu h1 {
+  margin-bottom: 10px;
+}
+
+.menu-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  margin: 32px auto 0;
+  max-width: 1200px;
+}
+
+.menu-card {
+  background-color: var(--white);
+  padding: 22px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.menu-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.menu-card h3 {
+  margin-bottom: 8px;
+  color: var(--blue);
+}
+
+.menu-card span {
+  font-weight: 700;
+  color: var(--red);
+  margin-top: auto;
+}
+
+.menu-card:hover {
+  transform: translateY(-4px);
+  transition: transform 0.2s ease;
+}
+
+.add-to-cart {
+  margin-top: 14px;
+  padding: 10px 16px;
+  background-color: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.add-to-cart:hover {
+  background-color: #001978;
+  transform: translateY(-2px);
+}
+
+/* CART */
+.cart-section {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  background: var(--white);
+  padding: 30px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: left;
+}
+
+.cart-section h2 {
+  color: var(--blue);
+  margin-bottom: 20px;
+}
+
+#cart-items {
+  margin-bottom: 20px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart-item-info {
+  flex: 1;
+}
+
+.cart-item-info p {
+  margin: 6px 0 0;
+}
+
+.cart-item button {
+  background-color: var(--red);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.cart-item button:hover {
+  background-color: #b60f2d;
+}
+
+#clear-cart {
+  margin-top: 20px;
+  padding: 12px 18px;
+  background-color: var(--red);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#clear-cart:hover {
+  background-color: #b60f2d;
+}
+.cart-icon {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cart-icon svg {
+  font-size: 1.2rem;
+}
+
+.cart-count {
+  background-color: var(--red);
+  color: white;
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
 }
