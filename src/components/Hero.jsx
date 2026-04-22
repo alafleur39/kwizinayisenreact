@@ -1,6 +1,6 @@
 import React from "react"; // we are importing the react library to create our hero component
 import { Link } from "react-router-dom"; // we are importing the Link component from react-router-dom to create a link to the menu page when the user clicks on the "View Our Menu" button in the hero section
-import { getImagePath } from "../utils/getImagePath";
+import { getImagePath } from "../utils/getImagePath"; // we are importing the getImagePath function from our utils folder to help us get the correct path for our background image and logo image in the hero component
 
 function Hero() { // this is the hero component that will be used to display the main banner of our website 
   return (

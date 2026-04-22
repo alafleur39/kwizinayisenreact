@@ -6,7 +6,8 @@ import { getImagePath } from "../utils/getImagePath";
 // 5. The gallery section includes a heading and a brief description to provide context for the images being displayed.
 
 function Gallery() {
-  const images = [
+  const images = [ // 1. The images array contains the paths to the images that will be displayed in the gallery. Each image is imported using the getImagePath function 
+  // to ensure that the correct path is used based on the deployment environment.
     getImagePath("images/gallery1.jpg.webp"),
     getImagePath("images/gallery2.jpg.webp"),
     getImagePath("images/gallery3.jpg.webp"),
@@ -15,7 +16,7 @@ function Gallery() {
     getImagePath("images/gallery6.jpg"),
   ];
 
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0); // 2. The currentSlide state is initialized to 0, which means that the first image in the array will be displayed when the gallery component is rendered.
 
   function goToPrevious() { // This function updates the currentSlide state to show the previous image in the array. If the current slide is the first one (index 0), it wraps around to the last image in the array.
     setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1));

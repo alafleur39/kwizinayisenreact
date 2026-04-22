@@ -10,7 +10,7 @@ import { Link, NavLink } from "react-router-dom"; // (Andy) Navlink is special v
 import { FaShoppingCart } from "react-icons/fa"; // we are importing the shopping cart icon from the react-icons library to use in our navbar component
 import { getImagePath } from "../utils/getImagePath"; // we are importing the getImagePath function from our utils folder to help us get the correct path for our logo image in the navbar component
  
-const navLinks = [
+const navLinks = [ // we are defining an array of navigation links that will be used to render the navigation menu in the navbar component. Each link has a label and a path that corresponds to the route it will navigate to when clicked.
   { label: "Home", path: "/" },
   { label: "Menu", path: "/menu" },
   { label: "About", path: "/about" },
@@ -25,14 +25,14 @@ function Navbar({ cartCount, currentPath }) { // we initlized a div with the cla
     setMenuOpen(false);
   }, [currentPath]);
 
-  function getLinkClass(isActive, extraClass = "") {
+  function getLinkClass(isActive, extraClass = "") { // this function is used to determine the class name for each navigation link based on whether it is active (the current route matches the link's path) and any additional classes that may be passed in as arguments.
     const classes = [];
 
-    if (extraClass) {
+    if (extraClass) { // If an extra class is provided, it is added to the classes array. This allows for additional styling to be applied to specific links, such as the cart icon.
       classes.push(extraClass);
     }
 
-    if (isActive) {
+    if (isActive) { // If the link is active, the "active-link" class is added to the classes array. This class can be used
       classes.push("active-link");
     }
 

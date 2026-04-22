@@ -1,7 +1,7 @@
 import React from "react";
 
 function Contact() { // the Contact component provides a contact form for users to send messages and a reservation form for booking tables, along with an embedded Google Map showing the restaurant's location.
-  function handleSubmit(event) {
+  function handleSubmit(event) { // this function is a placeholder for handling form submissions. It currently prevents the default form submission behavior, which would typically involve sending the form data to a server or displaying a success message.
     event.preventDefault();
   }
 

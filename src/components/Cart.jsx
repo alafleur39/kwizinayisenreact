@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom"; 
 
-function Cart({ cartItems, removeFromCart, clearCart }) {
-  const total = cartItems.reduce(
+function Cart({ cartItems, removeFromCart, clearCart }) { // 
+  const total = cartItems.reduce( //  (Andy) the total cost of the items in the cart is calculated using the reduce method, which sums up the price of each item multiplied by its quantity.
     (sum, item) => sum + item.price * item.quantity,
     0
   );
