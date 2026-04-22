@@ -1,11 +1,19 @@
 import React from "react"; // we are importing the react library to create our hero component
+import { Link } from "react-router-dom"; // we are importing the Link component from react-router-dom to create a link to the menu page when the user clicks on the "View Our Menu" button in the hero section
+import { getImagePath } from "../utils/getImagePath";
 
 function Hero() { // this is the hero component that will be used to display the main banner of our website 
   return (
-    <section className="hero" id="home">
+    <section
+      className="hero"
+      id="home"
+      style={{
+        backgroundImage: `url(${getImagePath("images/Haitian-Food-Photo-Collage-2-scaled.jpg.webp")})`,
+      }}
+    >
       <div className="hero-content">
         <img
-          src="/images/logo.png"
+          src={getImagePath("images/logo.png")}
           className="hero-logo"
           alt="Kwizin Ayisyen Lafleur logo"
         />
@@ -16,9 +24,9 @@ function Hero() { // this is the hero component that will be used to display the
         <p className="hero-subtitle">
           We invite you to experience the authentic flavors of Haiti in every dish we serve.
         </p>
-        <a href="#menu" className="btn">
+        <Link to="/menu" className="btn">
           View Our Menu
-        </a>
+        </Link>
       </div>
     </section>
   );

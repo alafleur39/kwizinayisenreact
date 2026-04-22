@@ -21,6 +21,21 @@ body {
   font-family: "Poppins", sans-serif;
   color: var(--dark);
   background: var(--light);
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+}
+
+.inner-page {
+  padding-top: 8px;
 }
 
 img {
@@ -38,7 +53,8 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 40px;
+  gap: 24px;
+  padding: 16px 32px;
   background-color: var(--blue);
   color: white;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
@@ -53,6 +69,7 @@ a {
   gap: 12px;
   font-weight: 700;
   font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
 .logo img {
@@ -63,9 +80,12 @@ a {
 .nav-links {
   list-style: none;
   display: flex;
+  align-items: center;
   gap: 22px;
   margin: 0;
+  margin-left: auto;
   padding: 0;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -74,9 +94,12 @@ a {
   font-weight: 500;
   padding: 6px 0;
   transition: color 0.25s ease;
+  display: inline-flex;
+  align-items: center;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.active-link {
   color: var(--red);
 }
 
@@ -84,12 +107,15 @@ a {
   display: none;
   font-size: 28px;
   cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+  margin-left: auto;
 }
 
 /* HERO */
 .hero {
   height: 100vh;
-  background-image: url("/images/Haitian-Food-Photo-Collage-2-scaled.jpg.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -153,6 +179,19 @@ a {
 .btn:hover {
   background-color: #b60f2d;
   transform: translateY(-2px);
+}
+
+.cart-notification {
+  position: fixed;
+  top: 88px;
+  right: 20px;
+  background-color: var(--red);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+  z-index: 1100;
+  font-weight: 600;
 }
 
 /* ABOUT */
@@ -249,19 +288,19 @@ a {
 } /* footer-botom is the copyright notice at the bottom of the footer, it adds a professional touch and indicates that the content is protected. */
 /* the following above is for the about footer and hero sections, this is neccessary for styling */
 
-@media (max-width: 768px) { /*TABLETS AND SMALLER SCREENS*/
-  .hamburger { /* we create a hamburger menu for smaller screens*/
+@media (max-width: 900px) {
+  .hamburger {
     display: block;
-    color: white;
   }
 
   .nav-links {
     position: absolute;
-    top: 64px;
+    top: 74px;
     right: 16px;
     background-color: var(--blue);
     flex-direction: column;
-    width: 220px;
+    align-items: flex-start;
+    width: min(240px, calc(100% - 32px));
     padding: 18px;
     border-radius: 10px;
     box-shadow: var(--shadow);
@@ -269,16 +308,29 @@ a {
     transform: translateY(-10px);
     pointer-events: none;
     transition: opacity 0.25s ease, transform 0.25s ease;
+    margin-left: 0;
+    flex-wrap: nowrap;
   }
 
   .nav-links li {
-    margin-bottom: 12px;
+    width: 100%;
+  }
+
+  .nav-links a {
+    width: 100%;
+    justify-content: flex-start;
   }
 
   .nav-links.active {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+  }
+}
+
+@media (max-width: 768px) { /*TABLETS AND SMALLER SCREENS*/
+  .navbar {
+    padding: 14px 20px;
   }
 
   .hero {
@@ -336,6 +388,13 @@ a {
     text-align: center;
   }
 
+  .cart-notification {
+    right: 16px;
+    left: 16px;
+    top: 84px;
+    text-align: center;
+  }
+
   .menu-container {
     grid-template-columns: 1fr;
   }
@@ -347,6 +406,11 @@ a {
 
   .cart-item button {
     margin-top: 12px;
+  }
+
+  .cart-actions {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .contact-grid {
@@ -380,9 +444,9 @@ a {
   }
 
   .nav-links {
-    width: 190px;
+    width: min(200px, calc(100% - 20px));
     right: 10px;
-    top: 58px;
+    top: 64px;
     padding: 14px;
   }
 
@@ -423,6 +487,10 @@ a {
 
   .footer {
     padding: 36px 16px;
+  }
+
+  .cart-page {
+    padding: 24px 16px 60px;
   }
 }
  /* Add more styles for other sections as needed */
@@ -572,6 +640,11 @@ a {
   text-align: left;
 }
 
+.cart-page {
+  padding: 32px 20px 80px;
+}
+
+.cart-section h1,
 .cart-section h2 {
   color: var(--blue);
   margin-bottom: 20px;
@@ -579,6 +652,13 @@ a {
 
 #cart-items {
   margin-bottom: 20px;
+}
+
+.cart-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
 }
 
 .cart-item {
@@ -612,8 +692,15 @@ a {
   background-color: #b60f2d;
 }
 
+.cart-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
 #clear-cart {
-  margin-top: 20px;
   padding: 12px 18px;
   background-color: var(--red);
   color: white;
@@ -629,7 +716,7 @@ a {
 .cart-icon {
   color: white;
   text-decoration: none;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
 }
@@ -758,4 +845,210 @@ select:focus {
 
 .full-width {
   grid-column: span 2;
+}
+
+@media (max-width: 900px) {
+  .hamburger {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 74px;
+    right: 16px;
+    background-color: var(--blue);
+    flex-direction: column;
+    align-items: flex-start;
+    width: min(240px, calc(100% - 32px));
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    margin-left: 0;
+    flex-wrap: nowrap;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links a {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .nav-links.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 14px 20px;
+  }
+
+  .hero {
+    height: auto;
+    min-height: 100vh;
+    padding: 100px 20px 80px;
+  }
+
+  .hero-content {
+    transform: translateY(0);
+    max-width: 100%;
+  }
+
+  .hero-logo {
+    width: clamp(220px, 70vw, 360px);
+    margin-bottom: -20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 8vw, 2.8rem);
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 28px;
+  }
+
+  .about-text,
+  .about-image {
+    min-width: 100%;
+  }
+
+  .gallery {
+    padding: 60px 16px;
+  }
+
+  .slide {
+    height: 320px;
+  }
+
+  .prev,
+  .next {
+    font-size: 20px;
+    padding: 8px 12px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cart-notification {
+    right: 16px;
+    left: 16px;
+    top: 84px;
+    text-align: center;
+  }
+
+  .menu-container {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cart-item button {
+    margin-top: 12px;
+  }
+
+  .cart-actions {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reservation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .full-width {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 520px) {
+  .navbar {
+    padding: 12px 18px;
+  }
+
+  .logo {
+    gap: 8px;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  .logo span {
+    font-size: 0.95rem;
+  }
+
+  .nav-links {
+    width: min(200px, calc(100% - 20px));
+    right: 10px;
+    top: 64px;
+    padding: 14px;
+  }
+
+  .hero {
+    padding: 90px 16px 70px;
+  }
+
+  .hero-logo {
+    width: 220px;
+    margin-bottom: -10px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    padding: 10px 22px;
+    font-size: 0.95rem;
+  }
+
+  .about {
+    padding: 60px 16px;
+  }
+
+  .about-text h1,
+  .gallery h1 {
+    font-size: 1.8rem;
+  }
+
+  .slide {
+    height: 240px;
+  }
+
+  .footer {
+    padding: 36px 16px;
+  }
+
+  .cart-page {
+    padding: 24px 16px 60px;
+  }
 }

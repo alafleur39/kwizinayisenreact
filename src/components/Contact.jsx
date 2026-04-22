@@ -1,13 +1,17 @@
 import React from "react";
 
 function Contact() { // the Contact component provides a contact form for users to send messages and a reservation form for booking tables, along with an embedded Google Map showing the restaurant's location.
+  function handleSubmit(event) {
+    event.preventDefault();
+  }
+
   return (
     <section className="contact" id="contact">
       <div className="container">
         <h1>Contact Us</h1>
 
         <div className="contact-grid">
-          <form className="contact-form form-card">
+          <form className="contact-form form-card" onSubmit={handleSubmit}>
             <h2>Send Us a Message</h2>
 
             <div className="form-group">
@@ -48,7 +52,7 @@ function Contact() { // the Contact component provides a contact form for users 
         </div>
 
         <div className="reservation-section">
-          <form className="reservation-form form-card">
+          <form className="reservation-form form-card" onSubmit={handleSubmit}>
             <h2>Make a Reservation</h2>
 
             <div className="reservation-grid">

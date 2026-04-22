@@ -1,9 +1,8 @@
 
-import React from "react";
-import menuData from "../data/menuData";
-import Cart from "./Cart";
+import React from "react"; 
+import menuData from "../Data/menuData";
 
-function Menu({ cartItems, addToCart, removeFromCart, clearCart }) {
+function Menu({ addToCart }) { // The Menu component is responsible for displaying the restaurant's menu items and allowing customers to add items to their shopping cart. It receives the addToCart function as a prop from the App component, which allows it to update the cart state when a customer adds an item.
   return (
     <section className="menu" id="menu">
       <h1>Our Menu</h1>
@@ -25,23 +24,16 @@ function Menu({ cartItems, addToCart, removeFromCart, clearCart }) {
           </div>
         ))}
       </div>
-
-      <Cart
-        cartItems={cartItems}
-        removeFromCart={removeFromCart}
-        clearCart={clearCart}
-      />
     </section>
   );
 }
 
 export default Menu;
-// 1. The Menu component uses the useState hook to manage the state of the cart items.
-// 2. The addToCart function checks if the item is already in the cart. If it is, it updates the quantity; if not, it adds the item to the cart with a quantity of 1.
-// 3. The removeFromCart function removes an item from the cart based on its id.
-// 4. The clearCart function empties the cart by setting the cartItems state to an empty array.
-// 5. The component renders a list of menu items using the menuData array, displaying each item's image, name, description, price, and an "Add to Cart" button.
-// 6. The Cart component is rendered at the bottom of the menu section, receiving the current cart items and functions to manage the cart as props.
-// april 22nd 2026 i updated the menu component to include the cart component and 
-// pass down the necessary props for managing the cart state. 
-// This allows users to see their cart items and manage them directly from the menu page.
+// 1. The Menu component renders the restaurant items from the menuData array.
+// 2. The shared addToCart function is passed in from App so the cart state stays connected across pages.
+// 3. Each menu card displays the image, name, description, price, and an "Add to Cart" button.
+// 4. Clicking "Add to Cart" sends the selected item back to App so the cart quantity can update.
+// 5. The menu page stays focused on browsing dishes while the navbar still shows the live cart count.
+// 6. The cart is now shown on its own page, while the menu still uses the shared cart functions passed down from App.
+// april 22nd 2026 i updated the menu component so it still works with the shared cart state
+// while the shopping cart is now accessed from its own navbar page. 

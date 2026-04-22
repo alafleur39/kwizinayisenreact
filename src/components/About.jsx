@@ -1,4 +1,5 @@
 import React from "react"; 
+import { getImagePath } from "../utils/getImagePath";
 
 function About() { // This component provides information about the restaurant's story and mission
   return (
@@ -26,7 +27,10 @@ function About() { // This component provides information about the restaurant's
         </div>
 
         <div className="about-image">
-          <img src="/images/contact.JPG.webp" alt="Restaurant Interior" />
+          <img
+            src={getImagePath("images/contact.JPG.webp")}
+            alt="Restaurant Interior"
+          />
         </div>
       </div>
     </section>

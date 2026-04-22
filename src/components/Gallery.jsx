@@ -1,4 +1,5 @@
 import React, { useState } from "react"; // 1. The Gallery component is designed to showcase a collection of images that represent the restaurant's interior and dishes, providing visitors with a visual representation of what they can expect when they visit the restaurant.
+import { getImagePath } from "../utils/getImagePath";
 // 2. The component uses the useState hook to manage the current slide index, allowing users to navigate through the images using previous and next buttons.
 // 3. The images are stored in an array, and the current image is displayed based on the currentSlide state.
 // 4. The goToPrevious and goToNext functions update the currentSlide state to navigate through the images, wrapping around to the beginning or end of the array as needed.
@@ -6,12 +7,12 @@ import React, { useState } from "react"; // 1. The Gallery component is designed
 
 function Gallery() {
   const images = [
-    "/images/gallery1.jpg.webp",
-    "/images/gallery2.jpg.webp",
-    "/images/gallery3.jpg.webp",
-    "/images/gallery4.jpg.webp",
-    "/images/gallery5.jpg.webp",
-    "/images/gallery6.jpg",
+    getImagePath("images/gallery1.jpg.webp"),
+    getImagePath("images/gallery2.jpg.webp"),
+    getImagePath("images/gallery3.jpg.webp"),
+    getImagePath("images/gallery4.jpg.webp"),
+    getImagePath("images/gallery5.jpg.webp"),
+    getImagePath("images/gallery6.jpg"),
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -33,7 +34,7 @@ function Gallery() {
       </p>
 
       <div className="slider">
-        <button className="prev" onClick={goToPrevious}>
+        <button className="prev" onClick={goToPrevious} type="button">
           &#10094;
         </button>
 
@@ -45,7 +46,7 @@ function Gallery() {
           />
         </div>
 
-        <button className="next" onClick={goToNext}>
+        <button className="next" onClick={goToNext} type="button">
           &#10095;
         </button>
       </div>
