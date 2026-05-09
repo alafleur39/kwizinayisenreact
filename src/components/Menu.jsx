@@ -1,16 +1,57 @@
-
-import React from "react"; 
-import menuData from "../Data/menuData";
+import React, { useEffect, useState } from "react";
+import { getMenuItems } from "../api/restaurantApi";
+import { getImagePath } from "../utils/getImagePath";
 
 function Menu({ addToCart }) { // The Menu component is responsible for displaying the restaurant's menu items and allowing customers to add items to their shopping cart. It receives the addToCart function as a prop from the App component, which allows it to update the cart state when a customer adds an item.
+  const [menuItems, setMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function loadMenuItems() {
+      try {
+        const items = await getMenuItems();
+
+        // MongoDB uses _id. The cart already expects id, so we keep that shape here.
+        const formattedItems = items.map((item) => ({
+          ...item,
+          id: item._id || item.id,
+        }));
+
+        setMenuItems(formattedItems);
+      } catch (loadError) {
+        setError(loadError.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadMenuItems();
+  }, []);
+
+  function getMenuImage(image) {
+    if (!image) {
+      return "";
+    }
+
+    if (image.startsWith("http") || image.startsWith("/")) {
+      return image;
+    }
+
+    return getImagePath(image);
+  }
+
   return (
     <section className="menu" id="menu">
       <h1>Our Menu</h1>
 
+      {loading && <p>Loading menu...</p>}
+      {error && <p>{error}</p>}
+
       <div className="menu-container">
-        {menuData.map((item) => (
+        {menuItems.map((item) => (
           <div className="menu-card" key={item.id}>
-            <img src={item.image} alt={item.name} />
+            <img src={getMenuImage(item.image)} alt={item.name} />
             <h3>{item.name}</h3>
             <p>{item.description}</p>
             <span>${item.price}</span>
