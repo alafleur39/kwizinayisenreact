@@ -40,4 +40,15 @@ async function startServer() {
       // Fail faster during class demos instead of looking frozen for a long time.
       serverSelectionTimeoutMS: 10000,
     });
-    console.log("Connected to 
+    console.log("Connected to MongoDB");
+
+    app.listen(PORT, () => {
+      console.log(`Kwizin Ayisyen Lafleur API running on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Server startup failed:", error.message);
+    process.exit(1);
+  }
+}
+
+startServer();

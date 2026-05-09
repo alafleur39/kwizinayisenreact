@@ -50,4 +50,11 @@ router.delete("/:id", async (req, res) => {
       return res.status(404).json({ message: "Menu item not found." });
     }
 
-    res.json({ message: "Menu item deleted.", men
+    res.json({ message: "Menu item deleted.", menuItem });
+  } catch (error) {
+    res.status(400).json({ message: "Could not delete menu item.", error: error.message });
+  }
+});
+
+module.exports = router;
+// Kwamme Baffour taught me that we use JSON for communication between the client and server.

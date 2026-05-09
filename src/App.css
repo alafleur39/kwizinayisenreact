@@ -713,6 +713,38 @@ a {
 #clear-cart:hover {
   background-color: #b60f2d;
 }
+
+.checkout-form {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #ddd;
+}
+
+.checkout-form button {
+  padding: 12px 18px;
+  background-color: var(--blue);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.checkout-form button:disabled {
+  background-color: #777;
+  cursor: not-allowed;
+}
+
+.order-success {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.order-error {
+  color: var(--red);
+  font-weight: 600;
+}
+
 .cart-icon {
   color: white;
   text-decoration: none;

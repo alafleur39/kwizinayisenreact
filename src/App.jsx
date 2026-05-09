@@ -14,8 +14,10 @@ import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 import {
   clearCart as clearSavedCart,
+  formatCartItems,
   getCart,
   getGuestId,
+  placeOrder,
   updateCart,
 } from "./api/restaurantApi";
 import "./App.css";
@@ -62,7 +64,7 @@ function App() { // we are moving cart state and related functions to the App co
   useEffect(() => {
     let ignoreCartLoad = false;
 
-    async function loadSavedCart() {
+    async function loadSavedCart() { // i created a function to load the saved cart from our api
       try {
         const savedCart = await getCart(guestId);
 
@@ -115,24 +117,50 @@ function App() { // we are moving cart state and related functions to the App co
     setNotification(`${item.name} added to cart!`);
   }
 
-  function removeFromCart(id) {
-    const nextCartItems = cartItems.filter((item) => item.id !== id);
+  function removeFromCart(id) { // this is the incremental deletion function professor requested from homework 3
+    const nextCartItems = cartItems.filter((item) => item.id !== id); //  Filter out the item with the specified id
 
-    setCartItems(nextCartItems);
-    saveCartItems(nextCartItems);
+    setCartItems(nextCartItems); //  Update the cart items state
+    saveCartItems(nextCartItems); //  Save the updated cart items
   }
 
-  function clearCart() {
+  function clearCart() { // this is the function to clear the entire cart
     setCartItems([]);
     clearSavedCart(guestId).catch((error) => {
       console.error("Could not clear saved cart:", error);
     });
   }
 
+  async function handlePlaceOrder({ customerName, customerEmail }) { // this is the function to place an order
+    const items = formatCartItems(cartItems); //  Format the cart items for the order
+    const total = items.reduce(
+      (sum, item) => sum + item.price * item.quantity, //  Calculate the total cost of the items
+      0
+    );
+
+    const orderData = { //  Create the order data object
+      customerName,
+      customerEmail,
+      items,
+      total,
+      guestId,
+    };
+
+    try { //  Attempt to place the order
+      const createdOrder = await placeOrder(orderData);
+      setCartItems([]);
+      setNotification("Order placed successfully!");
+      return createdOrder;
+    } catch (error) {
+      console.error("Could not place order:", error);
+      throw error;
+    }
+  }
+
   const cartCount = cartItems.reduce(
     (total, item) => total + item.quantity,
     0
-  );
+  ); //  Calculate the total number of items in the cart
 
   return (
     <>
@@ -158,6 +186,7 @@ function App() { // we are moving cart state and related functions to the App co
                 cartItems={cartItems}
                 removeFromCart={removeFromCart}
                 clearCart={clearCart}
+                onPlaceOrder={handlePlaceOrder}
               />
             }
           />

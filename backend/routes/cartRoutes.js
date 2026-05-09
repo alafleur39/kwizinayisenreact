@@ -55,4 +55,13 @@ router.put("/:guestId", async (req, res) => {
 });
 
 // DELETE /api/cart/:guestId - clear/delete one guest cart.
-ro
+router.delete("/:guestId", async (req, res) => {
+  try {
+    await Cart.findOneAndDelete({ guestId: req.params.guestId });
+    res.json({ message: "Cart cleared.", guestId: req.params.guestId });
+  } catch (error) {
+    res.status(500).json({ message: "Could not clear cart.", error: error.message });
+  }
+});
+
+module.exports = router;

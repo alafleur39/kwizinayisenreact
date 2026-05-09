@@ -66,4 +66,15 @@ async function seedMenu() {
     console.log("Connected to MongoDB");
 
     await MenuItem.deleteMany({}); // delete all existing menu items
-    await MenuItem.insertMany(menuItems); // insert the new 
+    await MenuItem.insertMany(menuItems); // insert the new menu items
+
+    console.log(`Seeded ${menuItems.length} menu items.`); // log the number of seeded menu items
+  } catch (error) {
+    console.error("Seed failed:", error.message); // log the error message
+    process.exitCode = 1;
+  } finally { // ensure the database connection is closed
+    await mongoose.connection.close();
+  }
+}
+
+seedMenu();

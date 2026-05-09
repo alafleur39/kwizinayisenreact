@@ -90,4 +90,13 @@ router.delete("/:id", async (req, res) => {
     const order = await Order.findByIdAndDelete(req.params.id); // delete the order by its ID
 
     if (!order) { // if the order is not found
-      return res.status(404).json({ message: "Order not found." 
+      return res.status(404).json({ message: "Order not found." });
+    }
+
+    res.json({ message: "Order deleted.", order }); // json response
+  } catch (error) {
+    res.status(400).json({ message: "Could not delete order.", error: error.message }); // json response
+  }
+});
+
+module.exports = router;
