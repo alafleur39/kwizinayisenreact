@@ -12,7 +12,7 @@ dotenv.config({ path: path.join(__dirname, ".env") });
 
 const app = express();
 const PORT = process.env.PORT || 5050;
-const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
+const CLIENT_URL = process.env.CLIENT_URL || "https://kwizinayisenreact-production.up.railway.app";
 
 // Allow the Vite frontend to make requests to this API.
 app.use(cors({ origin: CLIENT_URL }));
