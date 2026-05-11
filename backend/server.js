@@ -12,10 +12,20 @@ dotenv.config({ path: path.join(__dirname, ".env") });
 
 const app = express();
 const PORT = process.env.PORT || 5050;
-const CLIENT_URL = process.env.CLIENT_URL || "https://kwizinayisenreact-production.up.railway.app";
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://alafleur39.github.io",
+  process.env.CLIENT_URL,
+].filter(Boolean);
 
-// Allow the Vite frontend to make requests to this API.
-app.use(cors({ origin: CLIENT_URL }));
+// Allow local Vite and deployed GitHub Pages frontend to call this API.
+app.use(
+  cors({
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+); // enabled cross origin resource sharing to accept our github pages frontend
 
 // Allow Express to read JSON request bodies.
 app.use(express.json());

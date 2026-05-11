@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:5050/api";
+const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL || "https://kwizinayisenreact-production.up.railway.app"}/api`;
 const GUEST_ID_KEY = "kwizin_guest_id";
 // this file serves as the api layer to connect frontend and backend
 // RESTFUL API
